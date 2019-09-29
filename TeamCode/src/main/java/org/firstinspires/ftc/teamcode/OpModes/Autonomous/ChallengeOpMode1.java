@@ -17,6 +17,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * - go straight 1.5 seconds
  * - turn 360
  *
+ *
  * Drive: Mechanum Drive
  *
  */
@@ -46,62 +47,45 @@ public class ChallengeOpMode1 extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            this.forward(0.8, 3000);
-            this.turnRight(0.5, 6000);
-            this.brake();
-            this.forward(0.8, 4000);
-            this.turnLeft(0.5, 500);
-            this.brake();
-            this.forward(0.8, 1500);
-            this.turnRight(0.5, 2000)
-            this.brake();
+            steer(0.8, 0.8, 3000);
+            steer(0.5, -0.5, 6000);
+            brake();
+            steer(0.8, 0.8, 4000);
+            steer(-0.5, 0.5, 500);
+            brake();
+            steer(0.8, 0.8, 1500);
+            steer(0.5, -0.5, 2000);
+            brake();
 
         }
 
-
     }
 
 
-    public void setMotors(double frontLeftSpeed, double rearLeftSpeed,double frontRightSpeed, double rearRightSpeed, int time) {
+    public void steer(double leftSpeed, double rightSpeed, int time) {
+        frontLeftMotor.setPower(leftSpeed;
+        frontRightMotor.setPower(rightSpeed);
+        rearLeftMotor.setPower(leftSpeed);
+        rearRightMotor.setPower(rightSpeed);
+        sleep(time);
+        brake();
+    }
+
+    public void strafe(double frontLeftSpeed, double frontRightSpeed, double rearLeftSpeed, double rearRightSpeed, int time){
         frontLeftMotor.setPower(frontLeftSpeed);
+        frontRightMotor.setPower(frontLeftSpeed);
         rearLeftMotor.setPower(rearLeftSpeed);
-        frontRightMotor.setPower(frontRightSpeed);
         rearRightMotor.setPower(rearRightSpeed);
         sleep(time);
-    }
+        brake();
 
-    // No motors reversed
-    public void forward(double speed, int time) {
-        setMotors(speed, speed, speed, speed, time);
-
-    }
-    // All motors reversed
-    public void backward(double speed, int time) {
-        setMotors(-speed, -speed, -speed, -speed, time);
-
-    }
-    // Front right and rear left motors reversed (strafes right)
-    public void strafeRight(double speed, int time) {
-        setMotors(speed, -speed, -speed, speed, time);
-
-    }
-    // Front left and rear right motors reversed (strafes left)
-    public void strafeLeft(double speed, int time) {
-        setMotors(-speed, speed, speed, -speed, time);
-    }
-
-    // Right motors reversed
-    public void turnRight(double speed, int time) {
-        setMotors(speed, speed, -speed, -speed, time);
-    }
-
-    // Left motors reverse
-    public void turnLeft(double speed, int time) {
-        setMotors(-speed, -speed, speed, speed, time);
     }
 
     public void brake() {
-        setMotors(0, 0, 0, 0, 0);
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        rearLeftMotor.setPower(0);
+        rearRightMotor.setPower(0);
 
     }
 
