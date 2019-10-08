@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -63,7 +63,7 @@ public class ChallengeOpMode1 extends LinearOpMode {
 
 
     public void steer(double leftSpeed, double rightSpeed, int time) {
-        frontLeftMotor.setPower(leftSpeed;
+        frontLeftMotor.setPower(leftSpeed);
         frontRightMotor.setPower(rightSpeed);
         rearLeftMotor.setPower(leftSpeed);
         rearRightMotor.setPower(rightSpeed);
